@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "time": "13:48:00",
+    "src": "192.168.1.19",
+    "dst": "8.8.8.8",
+    "port": 80,
+    "proto": "HTTP",
+    "action": "ALLOW",
+    "msg": "Standard outgoing traffic"
+  },
+  {
+    "id": 2,
+    "time": "13:48:45",
+    "src": "192.168.1.48",
+    "dst": "8.8.8.8",
+    "port": 53,
+    "proto": "DNS",
+    "action": "ALLOW",
+    "msg": "Standard outgoing traffic"
+  },
+  {
+    "id": 3,
+    "time": "13:49:30",
+    "src": "192.168.1.25",
+    "dst": "8.8.8.8",
+    "port": 53,
+    "proto": "DNS",
+    "action": "ALLOW",
+    "msg": "Standard outgoing traffic"
+  },
+  {
+    "id": 4,
+    "time": "13:50:15",
+    "src": "192.168.1.41",
+    "dst": "8.8.8.8",
+    "port": 53,
+    "proto": "DNS",
+    "action": "ALLOW",
+    "msg": "Standard outgoing traffic"
+  },
+  {
+    "id": 5,
+    "time": "13:51:00",
+    "src": "192.168.1.34",
+    "dst": "8.8.8.8",
+    "port": 443,
+    "proto": "HTTPS",
+    "action": "ALLOW",
+    "msg": "Standard outgoing traffic"
+  },
+  {
+    "id": 6,
+    "time": "13:51:45",
+    "src": "103.25.14.82",
+    "dst": "192.168.1.10",
+    "port": 22,
+    "proto": "SSH",
+    "action": "DENY",
+    "msg": "Suspicious connection attempt"
+  },
+  {
+    "id": 7,
+    "time": "13:52:30",
+    "src": "103.25.14.82",
+    "dst": "192.168.1.10",
+    "port": 23,
+    "proto": "TCP",
+    "action": "DENY",
+    "msg": "Suspicious connection attempt"
+  },
+  {
+    "id": 8,
+    "time": "13:53:15",
+    "src": "103.25.14.82",
+    "dst": "192.168.1.10",
+    "port": 445,
+    "proto": "TCP",
+    "action": "DENY",
+    "msg": "Suspicious connection attempt"
+  },
+  {
+    "id": 9,
+    "time": "13:54:00",
+    "src": "192.168.1.2",
+    "dst": "8.8.8.8",
+    "port": 53,
+    "proto": "DNS",
+    "action": "ALLOW",
+    "msg": "Standard outgoing traffic"
+  },
+  {
+    "id": 10,
+    "time": "13:54:45",
+    "src": "192.168.1.20",
+    "dst": "8.8.8.8",
+    "port": 443,
+    "proto": "HTTPS",
+    "action": "ALLOW",
+    "msg": "Standard outgoing traffic"
+  },
+  {
+    "id": 11,
+    "time": "13:55:30",
+    "src": "192.168.1.2",
+    "dst": "8.8.8.8",
+    "port": 53,
+    "proto": "DNS",
+    "action": "ALLOW",
+    "msg": "Standard outgoing traffic"
+  },
+  {
+    "id": 12,
+    "time": "13:56:15",
+    "src": "192.168.1.2",
+    "dst": "8.8.8.8",
+    "port": 443,
+    "proto": "HTTPS",
+    "action": "ALLOW",
+    "msg": "Standard outgoing traffic"
+  }
+]

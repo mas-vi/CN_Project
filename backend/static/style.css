@@ -1,0 +1,24 @@
+body {
+    background-color: #f4f7f6;
+    color: #2d3436;
+}
+
+.navbar-brand {
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.table thead th {
+    border-top: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.badge {
+    font-weight: 500;
+}
+
+.card {
+    transition: transform 0.2s;
+}

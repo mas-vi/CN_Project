@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-secondary text-white fw-bold">AI Analysis Result</div>
+            <div class="card-body p-4 bg-white">
+                <p class="lead mb-0" style="white-space: pre-wrap;">{{ report.report_data }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                <h5 class="mb-0 fw-bold text-primary">Associated Activities</h5>
+                <button class="btn btn-sm btn-primary" data-bs-toggle="collapse" data-bs-target="#addActivityRow">Add New Entry</button>
+            </div>
+            
+            <div id="addActivityRow" class="collapse p-4 border-bottom bg-light">
+                <div class="row g-3">
+                    <div class="col-md-5">
+                        <label class="form-label small fw-bold">Threat Detected</label>
+                        <input type="text" id="threat_input" class="form-control" placeholder="e.g., SQL Injection attempt">
+                    </div>
+                    <div class="col-md-5">
+                        <label class="form-label small fw-bold">Mitigation Strategy</label>
+                        <input type="text" id="solution_input" class="form-control" placeholder="e.g., Updated WAF rules">
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button class="btn btn-success w-100" onclick="addActivity('{{report.report_id}}')">Commit</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th class="ps-4">Threat Assessment</th>
+                                <th>Implemented Solution</th>
+                                <th class="text-end pe-4">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if not activities %}
+                            <tr><td colspan="3" class="text-center py-5 text-muted italic">No activities recorded for this report.</td></tr>
+                            {% endif %}
+                            {% for a in activities %}
+                            <tr>
+                                <td class="ps-4"><strong>{{ a.assessed_threats }}</strong></td>
+                                <td>{{ a.implemented_solution }}</td>
+                                <td class="text-end pe-4">
+                                    <form action="/activity/delete/{{ a.activity_id }}" method="POST">
+                                        <button class="btn btn-sm btn-link text-danger p-0">Remove</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function addActivity(rid) {
+    const t = document.getElementById('threat_input').value;
+    const s = document.getElementById('solution_input').value;
+    if(!t || !s) { alert("Please fill in both fields"); return; }
+    
+    fetch('/activity', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            report_id: rid, 
+            assessed_threats: t, 
+            implemented_solution: s
+        })
+    }).then(() => location.reload());
+}
+</script>
+{% endblock %}

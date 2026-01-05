@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Security Reports</h2>
+    <button class="btn btn-success" onclick="generateReport()">Scan Network</button>
+</div>
+
+<div class="row">
+    {% for r in reports %}
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm border-{% if r.priority == 'high' %}danger{% else %}primary{% endif %}">
+            <div class="card-body">
+                <h5 class="card-title d-flex justify-content-between">
+                    ID: {{ r.report_id[:8] }}
+                    <span class="badge bg-{% if r.priority == 'high' %}danger{% else %}info{% endif %}">{{ r.priority }}</span>
+                </h5>
+                <p class="card-text text-muted">{{ r.report_data[:100] }}...</p>
+                <div class="d-flex justify-content-between mt-3">
+                    <a href="/report/{{ r.report_id }}" class="btn btn-sm btn-outline-primary">Manage Activities</a>
+                    <form action="/report/delete/{{ r.report_id }}" method="POST" onsubmit="return confirm('Delete this report?')">
+                        <button type="submit" class="btn btn-sm btn-link text-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

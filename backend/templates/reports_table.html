@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+        <h5 class="mb-0 font-weight-bold">Reports Repository</h5>
+        <button class="btn btn-success" onclick="fetch('/report',{method:'POST'}).then(()=>location.reload())">Run Network Scan</button>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Actions Logged</th>
+                        <th class="text-end pe-4">Management</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in reports %}
+                    <tr>
+                        <td><small class="text-muted">{{ r.timestamp }}</small></td>
+                        <td><span class="badge {% if r.priority == 'high' %}bg-danger{% else %}bg-secondary{% endif %}">{{ r.priority|upper }}</span></td>
+                        <td>{{ r.status }}</td>
+                        <td><span class="badge bg-dark rounded-pill">{{ r.activity_ids|length }}</span></td>
+                        <td class="text-end pe-4">
+                            <a href="/report/{{ r.report_id }}" class="btn btn-sm btn-primary">Details</a>
+                            <form action="/report/delete/{{ r.report_id }}" method="POST" class="d-inline" onsubmit="return confirm('Delete this report?')">
+                                <button class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
